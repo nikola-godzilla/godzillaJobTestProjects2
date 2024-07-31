@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProductService2.Abstract_;
 using ProductService2.DataProviders;
 
@@ -6,6 +7,7 @@ namespace ProductService2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ExchangeRatesController : ControllerBase
     {
         private readonly IExchangeRatesProvider _exchangeRatesProvider;
