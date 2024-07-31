@@ -89,6 +89,8 @@ internal class Program
             };
         });
 
+        builder.Services.AddAuthorization();
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -99,7 +101,7 @@ internal class Program
         }
 
         app.UseHttpsRedirection();
-        //app.UseStaticFiles();
+        app.UseAuthentication();
         app.UseAuthorization();
         app.MapControllers();
         app.Run();
