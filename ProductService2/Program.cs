@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using NuGet.Packaging;
 using ProductService2;
 using ProductService2.Abstract_;
+using ProductService2.DataProviders;
 using ProductService2.Domain;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -62,6 +63,7 @@ internal class Program
 
         builder.Services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("DataContext"));
         builder.Services.AddScoped(typeof(IRepo<>), typeof(EFRepo<>));
+        builder.Services.AddScoped<IExchangeRatesProvider, ExchangeRatesProvider>();
 
         // Ensure the secret key is at least 32 bytes long (256 bits)
         var jwtSecretKey = builder.Configuration.GetValue<string>("JwtSecretKey");
