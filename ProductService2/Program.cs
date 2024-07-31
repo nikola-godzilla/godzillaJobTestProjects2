@@ -4,6 +4,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NuGet.Packaging;
 using ProductService2;
+using ProductService2.Abstract_;
+using ProductService2.Domain;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -57,6 +59,9 @@ internal class Program
         //    x.UseNpgsql(postgresConnStr);
         //    x.UseSnakeCaseNamingConvention();
         //});
+
+        builder.Services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("DataContext"));
+        builder.Services.AddScoped(typeof(IRepo<>), typeof(EFRepo<>));
 
         // Ensure the secret key is at least 32 bytes long (256 bits)
         var jwtSecretKey = builder.Configuration.GetValue<string>("JwtSecretKey");
