@@ -1,5 +1,5 @@
 ﻿using ProductService2.Abstract_;
-using System.Text.Json;
+using ProtoBuf;
 
 namespace ProductService2.DataProviders
 {
@@ -8,33 +8,56 @@ namespace ProductService2.DataProviders
         public List<ExchangeRate> GetTimeSeries(DateOnly? startDate = null, DateOnly? endDate = null)
         {
             // Hardcoded from data  https://fx-rate.net/historical/?c_input=USD&cp_input=RUB&date_to_input=&range_input=30
-            // TODO parse CSV:      https://fx-rate.net/historical/?c_input=USD&cp_input=RUB&date_to_input=&range_input=30&csv=true
-            var ratesJsonPath = Path.Combine(AppContext.BaseDirectory, "Content", "rates.json");
-            using var streamReader = new StreamReader(ratesJsonPath);
-            var ratesJson = streamReader.ReadToEnd();
+            var ratesProtoBuf = Path.Combine(AppContext.BaseDirectory, "Content", "ratesProtoBuf.bin");
 
-            var timeSeriesObj = JsonSerializer.Deserialize<TimeSeries>(ratesJson, new JsonSerializerOptions
+            TimeSeries timeSeriesObj;
+            using (var fileStream = File.Open(ratesProtoBuf, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var bufferedStream = new BufferedStream(fileStream))
             {
-                Converters = {
-                    new DateOnlyJsonConverter() ,
-                    new StringToDecimalConverter()
-                }
-            });
+                timeSeriesObj = Serializer.Deserialize<TimeSeries>(bufferedStream);
+            }
 
-            List<ExchangeRate> ratesDict = timeSeriesObj.historicalRatesList
-                .Where(x => (startDate == null || x.date >= startDate) && (endDate == null || x.date <= endDate))
-                .OrderBy(x => x.date)
-                .Select(x => new ExchangeRate(x.date, x.rates.RUB))
+            List<ExchangeRate> ratesDict = timeSeriesObj.HistoricalRatesList
+                .Where(x => (startDate == null || x.Date >= startDate) && (endDate == null || x.Date <= endDate))
+                .OrderBy(x => x.Date)
+                .Select(x => new ExchangeRate(x.Date, x.Rates.RUB))
                 .ToList();
 
             return ratesDict;
         }
 
-        public record TimeSeries(DateOnly startDate, DateOnly endDate, string @base, IEnumerable<HistoricalRate> historicalRatesList);
+        [ProtoContract]
+        public record TimeSeries
+        {
+            [ProtoMember(1)]
+            public DateOnly StartDate { get; set; }
 
-        public record HistoricalRate(DateOnly date, Rates rates);
+            [ProtoMember(2)]
+            public DateOnly EndDate { get; set; }
 
-        public record Rates(decimal RUB);
+            [ProtoMember(3)]
+            public string Base { get; set; }
+
+            [ProtoMember(4)]
+            public IEnumerable<HistoricalRate> HistoricalRatesList { get; set; }
+        }
+
+        [ProtoContract]
+        public record HistoricalRate
+        {
+            [ProtoMember(1)]
+            public DateOnly Date { get; set; }
+
+            [ProtoMember(2)]
+            public Rates Rates { get; set; }
+        }
+
+        [ProtoContract]
+        public record Rates
+        {
+            [ProtoMember(1)]
+            public decimal RUB { get; set; }
+        }
     }
 
     public record ExchangeRate(DateOnly Date, decimal Value);
