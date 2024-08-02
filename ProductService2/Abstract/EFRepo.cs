@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProductService2.Domain;
+using ExchangeRatesService.Domain;
 
-namespace ProductService2.Abstract_
+namespace ExchangeRatesService.Abstract
 {
     public class EFRepo<T> : IRepo<T> where T : BaseEntity
     {

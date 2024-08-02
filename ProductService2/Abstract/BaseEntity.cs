@@ -1,4 +1,4 @@
-﻿namespace ProductService2.Abstract_
+﻿namespace ExchangeRatesService.Abstract
 {
 	public class BaseEntity
 	{

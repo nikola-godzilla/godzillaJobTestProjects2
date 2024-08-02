@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ProductService2.Abstract_;
-using ProductService2.Domain;
+using ExchangeRatesService.Abstract;
+using ExchangeRatesService.Domain;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace ProductService2.Controllers
+namespace ExchangeRatesService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

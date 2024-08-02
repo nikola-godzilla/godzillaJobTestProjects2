@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ProductService2.Abstract_;
-using ProductService2.DataProviders;
+using ExchangeRatesService.Abstract;
+using ExchangeRatesService.DataProviders;
 
-namespace ProductService2.Controllers
+namespace ExchangeRatesService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

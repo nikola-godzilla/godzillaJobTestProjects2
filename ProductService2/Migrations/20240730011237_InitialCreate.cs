@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ProductService2.Migrations
+namespace ExchangeRatesService.Migrations
 {
     public partial class InitialCreate : Migration
     {

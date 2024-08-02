@@ -1,6 +1,6 @@
-﻿using ProductService2.Abstract_;
+﻿using ExchangeRatesService.Abstract;
 
-namespace ProductService2.Domain
+namespace ExchangeRatesService.Domain
 {
     public class User : BaseEntity
     {

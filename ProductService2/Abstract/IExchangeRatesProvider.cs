@@ -1,6 +1,6 @@
-﻿using ProductService2.DataProviders;
+﻿using ExchangeRatesService.DataProviders;
 
-namespace ProductService2.Abstract_
+namespace ExchangeRatesService.Abstract
 {
     public interface IExchangeRatesProvider
     {

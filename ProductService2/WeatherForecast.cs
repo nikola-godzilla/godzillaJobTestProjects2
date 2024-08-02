@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 
-namespace ProductService2;
+namespace ExchangeRatesService;
 
 /// <summary>
 /// WeatherForecast

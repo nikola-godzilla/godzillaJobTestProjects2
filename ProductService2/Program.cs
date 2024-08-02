@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NuGet.Packaging;
-using ProductService2;
-using ProductService2.Abstract_;
-using ProductService2.DataProviders;
-using ProductService2.Domain;
+using ExchangeRatesService;
+using ExchangeRatesService.Abstract;
+using ExchangeRatesService.DataProviders;
+using ExchangeRatesService.Domain;
 using System.Text;
 using System.Text.Json.Serialization;
 

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ProductService2.Controllers;
+namespace ExchangeRatesService.Controllers;
 
 [ApiController]
 [Route("[controller]")]

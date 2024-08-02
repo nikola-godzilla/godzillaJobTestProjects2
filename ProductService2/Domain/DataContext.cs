@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace ProductService2.Domain
+namespace ExchangeRatesService.Domain
 {
 	public class DataContext : DbContext
 	{

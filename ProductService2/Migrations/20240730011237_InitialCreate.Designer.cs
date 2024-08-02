@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using ProductService2.Domain;
+using ExchangeRatesService.Domain;
 
 #nullable disable
 
-namespace ProductService2.Migrations
+namespace ExchangeRatesService.Migrations
 {
     [DbContext(typeof(DataContext))]
     [Migration("20240730011237_InitialCreate")]

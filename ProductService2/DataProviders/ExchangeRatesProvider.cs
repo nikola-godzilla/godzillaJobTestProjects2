@@ -1,7 +1,7 @@
-﻿using ProductService2.Abstract_;
+﻿using ExchangeRatesService.Abstract;
 using ProtoBuf;
 
-namespace ProductService2.DataProviders
+namespace ExchangeRatesService.DataProviders
 {
     public class ExchangeRatesProvider : IExchangeRatesProvider
     {
