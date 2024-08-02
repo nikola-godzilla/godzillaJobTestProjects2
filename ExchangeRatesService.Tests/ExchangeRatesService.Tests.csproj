@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProductService2\ExchangeRatesService.csproj" />
+    <ProjectReference Include="..\ExchangeRatesService\ExchangeRatesService.csproj" />
   </ItemGroup>
 
   <ItemGroup>
